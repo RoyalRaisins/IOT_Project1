@@ -1,0 +1,16 @@
+GET http://103.153.139.195:9412/test/h
+
+Response: {"Temperature":24,"Luminance":439,"LightStatus":"OFF","Humidity":46,"MotorStatus":"OFF"}
+
+
+
+POST http://103.153.139.195:9412/test/command
+Request Body: {"Device":"Motor"/"light", "Status":"ON"/"OFF"}
+
+Response: "success"/"An error occurred";
+
+{"resource":"device.property","event":"report","event_time":"20221206T075152Z","request_id":"8d3d8540-dfb4-4b6c-9e68-ef3d90226e4f","notify_data":{"header":{"app_id":"cf7480fbaaa04fc5b45f5944a13ed053","device_id":"6388501a688437315b86d573_sensor","node_id":"sensor","product_id":"6388501a688437315b86d573","gateway_id":"6388501a688437315b86d573_sensor"},"body":{"services":[{"service_id":"Agriculture","properties":{"Temperature":24,"Humidity":47,"Luminance":595,"LightStatus":"OFF","MotorStatus":"OFF"},"event_time":"20221206T075152Z"}]}}}
+
+POST http://103.153.139.195:9412/test/manual/on
+POST http://103.153.139.195:9412/test/manual/off
+GET http://103.153.139.195:9412/test/manual

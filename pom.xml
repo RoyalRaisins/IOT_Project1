@@ -38,6 +38,97 @@
 			<artifactId>json</artifactId>
             <version>20160810</version>
 		</dependency>
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.11</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/httpcore-4.4.11.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.7</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/httpclient-4.5.7.jar</systemPath>
+        </dependency>
+
+<!--  
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/jackson-core-2.8.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/jackson-databind-2.8.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/jackson-annotations-2.8.1.jar</systemPath>
+        </dependency>
+-->
+        <dependency>
+            <groupId>com.huawei.apigateway</groupId>
+            <artifactId>java-sdk-core</artifactId>
+            <version>3.1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/java-sdk-core-3.1.0.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-codec</groupId>
+            <artifactId>commons-codec</artifactId>
+            <version>1.11</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/commons-codec-1.11.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-logging</groupId>
+            <artifactId>commons-logging</artifactId>
+            <version>1.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/commons-logging-1.2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.10</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/joda-time-2.10.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.14.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/okhttp-3.14.2.jar</systemPath>
+        </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okio</groupId>
+            <artifactId>okio</artifactId>
+            <version>1.17.2</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/okio-1.17.2.jar</systemPath>
+        </dependency>
     </dependencies>
 
     <build>
@@ -49,4 +140,33 @@
         </plugins>
     </build>
 
+
+<!--
+    <dependencyManagement>
+    
+
+        <dependencies>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-annotations</artifactId>
+                <version>2.13.4</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.13.4.2</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-core</artifactId>
+                <version>2.13.4</version>
+            </dependency>
+
+        </dependencies>
+
+    </dependencyManagement>
+-->
 </project>
