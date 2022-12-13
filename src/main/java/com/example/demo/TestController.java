@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class TestController {
     JSONObject props = new JSONObject();
     HashMap<String, String> Status = new HashMap<String, String>();
-    boolean Manual = false;
+    static boolean Manual = false;
     @RequestMapping("/h")
     public String test(){
         System.out.println("test server requested");
@@ -36,10 +36,10 @@ public class TestController {
         Status.put("light",props.getString("LightStatus"));
         //System.out.println("Properties: \n"+props);
         if(!Manual){
-            if(Status.get("Motor").toString().equals("OFF") && props.getInt("Temperature") > 30)ConfigDevice("Motor","ON");  //降温
-            else if(Status.get("Motor").toString().equals("ON") && props.getInt("Temperature") < 25)ConfigDevice("Motor","OFF");
-            if(Status.get("light").toString().equals("OFF") && props.getInt("Humidity") > 70)ConfigDevice("light","ON");  //灭虫
-            else if(Status.get("light").toString().equals("ON") && props.getInt("Humidity") < 67)ConfigDevice("light","OFF");
+            if(Status.get("Motor").toString().equals("OFF") && props.getInt("Temperature") >= 30)ConfigDevice("Motor","ON");  //降温
+            else if(Status.get("Motor").toString().equals("ON") && props.getInt("Temperature") <= 27)ConfigDevice("Motor","OFF");
+            if(Status.get("light").toString().equals("OFF") && props.getInt("Humidity") >= 40)ConfigDevice("light","ON");  //灭虫
+            else if(Status.get("light").toString().equals("ON") && props.getInt("Humidity") <= 37)ConfigDevice("light","OFF");
         }
         return "Post successful";
     }
@@ -49,8 +49,8 @@ public class TestController {
         System.out.println("Body: " + json);
         JSONObject msg = new JSONObject(json);
         try {
-            ConfigDevice(msg.getString("Device"), msg.getString("Status"));
-            return "success";
+            if(ConfigDevice(msg.getString("Device"), msg.getString("Status")))return "success";
+            else return "An error occurred";
         } catch (Exception e) {
             e.getStackTrace();
             return "An error occurred";
@@ -60,11 +60,13 @@ public class TestController {
     }
     @PostMapping("/manual/on")
     public String EnableManual(){
+        System.out.println("Switching to manual");
         Manual = true;
         return "Manual control enabled";
     }
     @PostMapping("/manual/off")
     public String DisableManual(){
+        System.out.println("Switching to auto");
         Manual = false;
         return "Manual control disabled";
     }
@@ -72,7 +74,7 @@ public class TestController {
     public String isManual(){
         return Manual? "YES":"NO";
     }
-    public void ConfigDevice(String function, String status){
+    public Boolean ConfigDevice(String function, String status){
             System.out.println("Configuring "+ function+ " to be "+ status);
             JSONObject params = new JSONObject();
             params.put(function, status);
@@ -83,8 +85,11 @@ public class TestController {
             try {
                 new QueryDeviceList().SendCommand(command);
                 Status.put(function, status);
+                return true;
             } catch (Exception e) {
+                System.out.println("Configuration failed");
                 e.getStackTrace();
+                return false;
             }
     }
 
